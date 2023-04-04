@@ -151,6 +151,17 @@ if (APPLE)
 		set (__ARM_NEON "TRUE")
 		set (NEON 1)
 	endif()
+else()
+	execute_process(
+      COMMAND uname -m
+      RESULT_VARIABLE result
+      OUTPUT_VARIABLE OTHER_NATIVE_ARCHITECTURE
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+    if(OTHER_NATIVE_ARCHITECTURE STREQUAL "aarch64")
+		set (__ARM_NEON "TRUE")
+		set (NEON 1)
+	endif()
 endif()
 
 ##################################################################
